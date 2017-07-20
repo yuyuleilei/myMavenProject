@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+         http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <context:property-placeholder location="classpath:/my.properties" file-encoding="UTF-8"/>
+    <dubbo:application name="myMavenProject"/>
+    <dubbo:registry id="registry" address="${zookeeper.registry}"/>
+    <!--  host="${local.host}" -->
+    <dubbo:protocol name="dubbo" port="20881"/>
+    <dubbo:consumer check="false" timeout="180000"/>
+    <!--<dubbo:service interface="com.zhixindu.crm.facade.business.DubboCustomerBusiness" ref="customerBusiness" />-->
+    <!--agent-->
+    <!--<dubbo:reference id="dubboAgentAccountBusiness" interface="com.zhixindu.agent.facade.business.DubboAgentAccountBusiness"/>-->
+</beans>
