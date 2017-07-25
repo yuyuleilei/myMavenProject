@@ -33,31 +33,26 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.yulei.core.controller"})
-public class WebMvcConfig extends WebMvcConfigurerAdapter {
+public class WebMvcConfig /*extends WebMvcConfigurerAdapter */{
 
     private static final Charset UTF8 = Charset.forName("UTF-8");
 
-    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(userOperationInterceptor());
     }
 
-    @Bean
     public UserOperationInterceptor userOperationInterceptor() {
         return new UserOperationInterceptor();
     }
 
-    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
-    @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
 
-    @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
         stringConverter.setSupportedMediaTypes(Arrays.asList(new MediaType("text", "plain", UTF8),new MediaType("text", "html", UTF8),new MediaType("text", "xml", UTF8)));
@@ -66,14 +61,12 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         converters.add(new FormHttpMessageConverter());
     }
 
-    @Bean(name = "contentNegotiationManager")
     public ContentNegotiationManagerFactoryBean contentNegotiationManagerFactoryBean() {
         ContentNegotiationManagerFactoryBean bean = new ContentNegotiationManagerFactoryBean();
         bean.setFavorPathExtension(false);
         return bean;
     }
 
-    @Bean(name = "viewResolver")
     public InternalResourceViewResolver jspViewResolver() {
         InternalResourceViewResolver bean = new InternalResourceViewResolver();
         bean.setPrefix("/WEB-INF/jsp/");
@@ -81,14 +74,12 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         return bean;
     }
 
-    @Bean(name = "multipartResolver")
     public CommonsMultipartResolver getMultipartResolver() {
         CommonsMultipartResolver commonsMultipartResolver  = new CommonsMultipartResolver();
         commonsMultipartResolver.setMaxUploadSize(204800000);
         return commonsMultipartResolver;
     }
 
-    @Bean(name = "messageSource")
     public ReloadableResourceBundleMessageSource getMessageSource() {
         ReloadableResourceBundleMessageSource resource = new ReloadableResourceBundleMessageSource();
         resource.setBasename("classpath:/i18n/messages");

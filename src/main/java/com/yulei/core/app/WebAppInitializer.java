@@ -22,11 +22,8 @@ import javax.servlet.ServletRegistration;
  * @date 03/12/2016
  * @description Servlet 3.0 to replace web.xml
  */
-public class WebAppInitializer implements WebApplicationInitializer {
-    @Override
-    public void onStartup(ServletContext container) {
-        System.out.println("fgadjasfdj");
-    }
+public class WebAppInitializer /*implements WebApplicationInitializer*/ {
+
 
 
 }

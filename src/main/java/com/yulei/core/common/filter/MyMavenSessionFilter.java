@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by sunyf on 2016/5/12.
+ * Created by yulei on 2016/5/12.
  */
 public class MyMavenSessionFilter implements Filter {
     private final static Logger LOGGER = LoggerFactory.getLogger(MyMavenSessionFilter.class);
